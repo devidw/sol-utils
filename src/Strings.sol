@@ -32,8 +32,11 @@ library Strings {
             _startPos <= _endPos,
             "Start position must be less than end position"
         );
+        // This can be simplified when array slicing is supported not only for
+        // calldata arrays but also for memory arrays:
+        // https://github.com/ethereum/solidity/issues/7423
         bytes memory _outArr = new bytes(_endPos - _startPos);
-        for (uint256 i = _startPos; i < _endPos; i++) {
+        for (uint256 i = _startPos; i < _endPos; ++i) {
             _outArr[i - _startPos] = _inArr[i];
         }
         out = string(_outArr);
@@ -57,7 +60,7 @@ library Strings {
         uint256 _inArrLen = _inArr.length;
         uint256 _start;
         // Find the index of the first non-whitespace character
-        for (uint256 i = 0; i < _inArrLen; i++) {
+        for (uint256 i = 0; i < _inArrLen; ++i) {
             bytes1 _char = _inArr[i];
             if (
                 _char != 0x20 && // space
@@ -71,8 +74,11 @@ library Strings {
                 break;
             }
         }
+        // This can be simplified when array slicing is supported not only for
+        // calldata arrays but also for memory arrays:
+        // https://github.com/ethereum/solidity/issues/7423
         bytes memory _outArr = new bytes(_inArrLen - _start);
-        for (uint256 i = _start; i < _inArrLen; i++) {
+        for (uint256 i = _start; i < _inArrLen; ++i) {
             _outArr[i - _start] = _inArr[i];
         }
         return string(_outArr);
@@ -97,8 +103,11 @@ library Strings {
                 break;
             }
         }
+        // This can be simplified when array slicing is supported not only for
+        // calldata arrays but also for memory arrays:
+        // https://github.com/ethereum/solidity/issues/7423
         bytes memory _outArr = new bytes(_end + 1);
-        for (uint256 i = 0; i <= _end; i++) {
+        for (uint256 i = 0; i <= _end; ++i) {
             _outArr[i] = _inArr[i];
         }
         return string(_outArr);
