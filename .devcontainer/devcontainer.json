@@ -5,7 +5,9 @@
 			"settings": {
 				"files.exclude": {
 					"/lib": true
-				}
+				},
+				"solidity.packageDefaultDependenciesContractsDirectory": "src",
+				"solidity.packageDefaultDependenciesDirectory": "lib"
 			},
 			"extensions": [
 				"JuanBlanco.solidity",
